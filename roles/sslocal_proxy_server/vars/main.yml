@@ -1,0 +1,15 @@
+ss_version: v1.15.4
+ss_arch: x86_64-unknown-linux-gnu
+v2ray_version: v1.3.2
+v2ray_arch: linux-amd64
+ssproxy_service_template: ../templates/ssproxy.service.j2
+
+proxies:
+  - proxy_type: http
+    proxy_port: 3128
+    ss_sip002_uri: "ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpiZDc5YzljNC1mZDYzLTRlNTctYWEwNS00OTdkYmQ0MTNiMTM@p01--rusty-spaghetty--ppp--gqb8-r4wz.code.run:443/?plugin=v2ray;path=/42f4e7a4-2dd7-44e8-a52c-467e81ea4007;host=p01--rusty-spaghetty--ppp--gqb8-r4wz.code.run;tls"
+    sslocal_params: --protocol http
+  - proxy_type: socks
+    proxy_port: 1080
+    ss_sip002_uri: "ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpiZDc5YzljNC1mZDYzLTRlNTctYWEwNS00OTdkYmQ0MTNiMTM@p01--rusty-spaghetty--ppp--gqb8-r4wz.code.run:443/?plugin=v2ray;path=/42f4e7a4-2dd7-44e8-a52c-467e81ea4007;host=p01--rusty-spaghetty--ppp--gqb8-r4wz.code.run;tls"
+    sslocal_params: ""

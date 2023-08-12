@@ -1,0 +1,11 @@
+[Unit]
+Description=Shadowsock {{ item.proxy_type }} proxy
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/sslocal -b "0.0.0.0:{{ item.proxy_port }}" --server-url "{{ item.ss_sip002_uri | replace('@', '\\x40') }}"
+SyslogIdentifier=ssproxy_{{ item.proxy_type }}_{{ item.proxy_port }}
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

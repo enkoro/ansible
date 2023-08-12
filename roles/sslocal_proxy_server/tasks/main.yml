@@ -1,0 +1,14 @@
+- name: Stop ssproxy services
+  ansible.builtin.import_tasks: ss_services_stop.yml
+
+- name: Deploy ss-rust
+  ansible.builtin.import_tasks: ss_deploy.yml
+
+- name: Deploy v2ray plugin
+  ansible.builtin.import_tasks: v2ray_deploy.yml
+
+- name: Create services
+  ansible.builtin.import_tasks: ss_services_create.yml
+
+- name: Start ssproxy services
+  ansible.builtin.import_tasks: ss_services_start.yml

@@ -1,0 +1,27 @@
+- name: Add HTTP_PROXY system wide
+  ansible.builtin.lineinfile:
+    dest: /etc/environment
+    state: present
+    regexp: "HTTP_PROXY=.*"
+    line: 'HTTP_PROXY="http://{{ http_proxy }}"'
+
+- name: Add http_proxy system wide
+  ansible.builtin.lineinfile:
+    dest: /etc/environment
+    state: present
+    regexp: "http_proxy=.*"
+    line: 'http_proxy="http://{{ http_proxy }}"'
+
+- name: Add HTTPS_PROXY system wide
+  ansible.builtin.lineinfile:
+    dest: /etc/environment
+    state: present
+    regexp: "HTTPS_PROXY=.*"
+    line: 'HTTPS_PROXY="http://{{ http_proxy }}"'
+
+- name: Add https_proxy system wide
+  ansible.builtin.lineinfile:
+    dest: /etc/environment
+    state: present
+    regexp: "https_proxy=.*"
+    line: 'https_proxy="http://{{ http_proxy }}"'

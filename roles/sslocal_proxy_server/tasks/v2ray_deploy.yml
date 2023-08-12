@@ -1,0 +1,30 @@
+- name: Download v2ray plugin binaries
+  ansible.builtin.get_url:
+    url: https://github.com/shadowsocks/v2ray-plugin/releases/download/{{ v2ray_version }}/v2ray-plugin-{{ v2ray_arch }}-{{ v2ray_version }}.tar.gz
+    dest: /root/
+    mode: "0644"
+  register: v2ray_tar
+
+- name: Untar files
+  ansible.builtin.unarchive:
+    src: "{{ v2ray_tar.dest }}"
+    dest: /root/
+    copy: false
+
+- name: Cleanup v2ray tar
+  ansible.builtin.file:
+    path: "{{ v2ray_tar.dest }}"
+    state: absent
+
+- name: Copy v2ray bin
+  ansible.builtin.copy:
+    remote_src: true
+    src: "/root/v2ray-plugin_{{ v2ray_arch | replace('-', '_') }}"
+    dest: "/usr/bin/v2ray"
+    mode: "0755"
+  register: v2ray_bin
+
+- name: Cleanup v2ray bin
+  ansible.builtin.file:
+    path: "{{ v2ray_bin.src }}"
+    state: absent

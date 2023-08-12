@@ -1,0 +1,13 @@
+- name: Find current ssproxy services
+  ansible.builtin.find:
+    paths: /etc/systemd/system/
+    patterns: "ssproxy_*.service"
+  register: ssproxy_services
+
+- name: Stop ssproxy services
+  ansible.builtin.service:
+    name: "{{ item.path | basename }}"
+    state: "stopped"
+  loop: "{{ ssproxy_services.files }}"
+  loop_control:
+    label: "{{ item.path | basename }}"

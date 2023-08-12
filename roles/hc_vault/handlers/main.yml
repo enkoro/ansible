@@ -1,0 +1,5 @@
+- name: Make sure vault service is enabled and started
+  ansible.builtin.systemd:
+    name: vault.service
+    state: started
+    enabled: true

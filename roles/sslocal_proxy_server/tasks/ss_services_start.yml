@@ -1,0 +1,7 @@
+- name: Start proxy services
+  ansible.builtin.service:
+    name: "{{ item.path | basename }}"
+    state: "started"
+  loop: "{{ ssproxy_services_new.results }}"
+  loop_control:
+    label: "{{ item.dest | basename }}"

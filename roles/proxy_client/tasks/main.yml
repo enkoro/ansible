@@ -1,0 +1,10 @@
+- name: Proxychains
+  ansible.builtin.import_tasks: proxychains.yml
+
+- name: HTTP(S)_PROXY env
+  ansible.builtin.import_tasks: http_proxy_env.yml
+  when: set_http_proxy_env
+
+- name: APT proxy
+  ansible.builtin.import_tasks: apt_proxy.yml
+  when: set_apt_proxy

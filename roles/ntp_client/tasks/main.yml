@@ -1,0 +1,12 @@
+- name: Set timezone
+  ansible.builtin.command: timedatectl set-timezone {{ timezone }}
+  register: output
+  changed_when: output.rc != 0
+
+- name: Copy timesyncd config
+  ansible.builtin.template:
+    src: "{{ timesyncd_conf_template }}"
+    dest: /etc/systemd/timesyncd.conf
+    mode: "0644"
+  notify:
+    - Make sure timezoned is restarted

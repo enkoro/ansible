@@ -1,0 +1,17 @@
+- name: Download ss-rust binaries
+  ansible.builtin.get_url:
+    url: https://github.com/shadowsocks/shadowsocks-rust/releases/download/{{ ss_version }}/shadowsocks-{{ ss_version }}.{{ ss_arch }}.tar.xz
+    dest: /root/
+    mode: "0644"
+  register: ss_tar
+
+- name: Untar files
+  ansible.builtin.unarchive:
+    src: "{{ ss_tar.dest }}"
+    dest: /usr/bin/
+    copy: false
+
+- name: Cleanup
+  ansible.builtin.file:
+    path: "{{ ss_tar.dest }}"
+    state: absent

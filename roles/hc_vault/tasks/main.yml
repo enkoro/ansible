@@ -1,0 +1,5 @@
+- name: Hashicorp Repo
+  ansible.builtin.import_tasks: repo.yml
+
+- name: Vault
+  ansible.builtin.import_tasks: vault.yml

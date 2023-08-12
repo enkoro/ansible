@@ -1,0 +1,17 @@
+- name: Add APT http proxy
+  ansible.builtin.lineinfile:
+    dest: /etc/apt/apt.conf.d/proxy.conf
+    state: present
+    create: true
+    mode: "0644"
+    regexp: "Acquire::http::Proxy.*"
+    line: 'Acquire::http::Proxy "http://{{ http_proxy }}";'
+
+- name: Add APT https proxy
+  ansible.builtin.lineinfile:
+    dest: /etc/apt/apt.conf.d/proxy.conf
+    state: present
+    create: true
+    mode: "0644"
+    regexp: "Acquire::https::Proxy.*"
+    line: 'Acquire::https::Proxy "http://{{ http_proxy }}";'

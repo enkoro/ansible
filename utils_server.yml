@@ -1,0 +1,4 @@
+- name: Utils Server
+  hosts: "utils_server"
+  roles:
+    - utils_server

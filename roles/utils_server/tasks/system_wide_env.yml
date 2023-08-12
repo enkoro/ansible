@@ -1,0 +1,7 @@
+- name: Сustomize /etc/environment
+  ansible.builtin.lineinfile:
+    dest: /etc/environment
+    state: present
+    regexp: "^{{ item.key }}="
+    line: "{{ item.key }}={{ item.value }}"
+  loop: "{{ os_environment }}"

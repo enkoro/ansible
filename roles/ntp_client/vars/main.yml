@@ -1,0 +1,4 @@
+timesyncd_conf_template: ../templates/timesyncd.conf.j2
+main_ntp_server: 192.168.1.1
+fallback_ntp_server: 192.168.1.2
+timezone: Europe/Moscow

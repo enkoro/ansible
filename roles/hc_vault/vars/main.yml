@@ -1,0 +1,4 @@
+proxy_env:
+  http_proxy: http://192.168.1.8:3128
+  https_proxy: http://192.168.1.8:3128
+vault_conf_template: ../templates/vault.hcl.j2

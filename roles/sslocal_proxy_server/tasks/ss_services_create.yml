@@ -1,0 +1,7 @@
+- name: Create proxy services
+  ansible.builtin.template:
+    src: "{{ ssproxy_service_template }}"
+    dest: "/etc/systemd/system/ssproxy_{{ item.proxy_type }}.service"
+    mode: "0644"
+  loop: "{{ proxies }}"
+  register: ssproxy_services_new

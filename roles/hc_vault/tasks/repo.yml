@@ -1,0 +1,18 @@
+- name: Install GPG
+  ansible.builtin.apt:
+    name: gpg
+    state: present
+    update_cache: true
+
+- name: Add Hasicorp GPG key
+  ansible.builtin.get_url:
+    url: https://apt.releases.hashicorp.com/gpg
+    dest: /etc/apt/trusted.gpg.d/hashicorp-archive-keyring.asc
+    mode: "0644"
+    force: true
+  environment: "{{ proxy_env }}"
+
+- name: Add Hasicorp repo
+  ansible.builtin.apt_repository:
+    filename: hashicorp
+    repo: "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/hashicorp-archive-keyring.asc] https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main"

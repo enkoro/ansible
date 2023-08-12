@@ -1,0 +1,4 @@
+- name: Make sure timezoned is restarted
+  ansible.builtin.systemd:
+    name: systemd-timesyncd.service
+    state: restarted

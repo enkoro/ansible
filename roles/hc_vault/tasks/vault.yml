@@ -1,0 +1,13 @@
+- name: Install Vault
+  ansible.builtin.apt:
+    name: vault
+    state: present
+    update_cache: true
+
+- name: Copy vault config
+  ansible.builtin.template:
+    src: "{{ vault_conf_template }}"
+    dest: /etc/vault.d/vault.hcl
+    mode: "0644"
+  notify:
+    - Make sure vault service is enabled and started

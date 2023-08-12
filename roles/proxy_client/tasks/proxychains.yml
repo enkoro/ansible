@@ -1,0 +1,19 @@
+- name: Install proxychains
+  ansible.builtin.apt:
+    name: proxychains
+    state: present
+    update_cache: true
+
+- name: Copy proxychains config
+  ansible.builtin.copy:
+    src: "{{ proxychains_conf }}"
+    dest: /etc/proxychains.conf
+    mode: "0644"
+
+- name: Add proxies to /etc/proxychains.conf
+  ansible.builtin.lineinfile:
+    dest: /etc/proxychains.conf
+    state: present
+    regexp: "^{{ item.type }}\\s+{{ item.host }}\\s+{{ item.port }}"
+    line: "{{ item.type }} {{ item.host }} {{ item.port }}"
+  loop: "{{ socks_proxy_servers }}"

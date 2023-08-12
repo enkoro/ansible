@@ -1,0 +1,5 @@
+- name: Ubuntu Server
+  hosts: "testvm"
+  roles:
+    - sslocal_proxy_server
+    - vm_ubuntu_server
