@@ -1,0 +1,6 @@
+- name: Portainer Server
+  hosts: "portainer_server"
+  roles:
+    - apt_upgrade
+    - docker
+    - portainer_server

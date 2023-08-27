@@ -1,0 +1,11 @@
+- name: Download Docker install script
+  ansible.builtin.get_url:
+    url: https://get.docker.com
+    dest: ./get-docker.sh
+    mode: "0755"
+    force: true
+
+- name: Install Docker
+  ansible.builtin.command: ./get-docker.sh
+  register: output
+  changed_when: output.rc != 0

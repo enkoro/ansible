@@ -1,6 +1,2 @@
-- name: Qemu Guest Agent
-  ansible.builtin.import_tasks: qemu.yml
-  when: ansible_virtualization_type|lower == 'kvm'
-
 - name: ZSH
   ansible.builtin.import_tasks: zsh.yml

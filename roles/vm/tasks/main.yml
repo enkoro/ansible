@@ -1,0 +1,8 @@
+- name: Wait for Cloud-Init initialization
+  ansible.builtin.command: cloud-init status --wait
+  register: output
+  changed_when: output.rc != 0
+
+- name: Qemu Guest Agent
+  ansible.builtin.import_tasks: qemu.yml
+  when: ansible_virtualization_type|lower == 'kvm'

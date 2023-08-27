@@ -1,4 +1,8 @@
-- name: APT upgrade
+- name: APT update
   ansible.builtin.apt:
     update_cache: true
+    upgrade: "yes"
+
+- name: APT upgrade
+  ansible.builtin.apt:
     upgrade: "yes"
