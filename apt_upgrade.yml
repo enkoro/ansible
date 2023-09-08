@@ -1,4 +1,0 @@
-- name: APT Upgrade
-  hosts: "ubuntu_servers"
-  roles:
-    - apt_upgrade
