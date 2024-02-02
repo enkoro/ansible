@@ -1,8 +1,9 @@
 - name: Check Tofu installed
-  ansible.builtin.command: tofu
-  register: result
+  ansible.builtin.shell: tofu
+  register: tofu_result
+  check_mode: false
   changed_when: false
-  failed_when: result.rc != 0 and result.rc != 127
+  failed_when: tofu_result.rc != 0 and tofu_result.rc != 127
 
 - name: Download Tofu installation script
   ansible.builtin.get_url:
@@ -10,16 +11,16 @@
     dest: /root/
     mode: "0755"
   register: tofu_install_script
-  when: "'command not found' in result.stdout"
+  when: "'not found' in tofu_result.stderr"
 
 - name: Install Tofu
   ansible.builtin.command: "{{ tofu_install_script.dest }} --install-method standalone"
   register: output
   changed_when: output.rc != 0
-  when: "'command not found' in result.stdout"
+  when: "'not found' in tofu_result.stderr"
 
 - name: Cleanup
   ansible.builtin.file:
     path: "{{ tofu_install_script.dest }}"
     state: absent
-  when: "'command not found' in result.stdout"
+  when: "'not found' in tofu_result.stderr"

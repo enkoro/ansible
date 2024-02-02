@@ -6,6 +6,7 @@
   ansible.builtin.service:
     name: "{{ item.dest | basename }}"
     state: "started"
+    enabled: true
   loop: "{{ ssproxy_services_new.results }}"
   loop_control:
     label: "{{ item.dest | basename }}"
