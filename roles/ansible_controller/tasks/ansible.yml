@@ -3,3 +3,9 @@
     name: ansible
     state: present
     update_cache: true
+
+- name: Install Ansible
+  ansible.builtin.apt:
+    name: ansible-lint
+    state: present
+    update_cache: true

@@ -4,6 +4,12 @@
 - name: Set system wide env
   ansible.builtin.import_tasks: system_wide_env.yml
 
+- name: Copy SSH keys from Vault
+  ansible.builtin.import_tasks: ssh_keys_vault.yml
+
+- name: Install VIM
+  ansible.builtin.import_tasks: vim.yml
+
 - name: Install Python
   ansible.builtin.import_tasks: python.yml
 

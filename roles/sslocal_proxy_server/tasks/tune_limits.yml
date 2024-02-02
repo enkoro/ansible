@@ -1,0 +1,12 @@
+- name: Tune /etc/security/limits.conf
+  ansible.builtin.lineinfile:
+    dest: /etc/security/limits.conf
+    state: present
+    regexp: "{{ item.key }}"
+    line: "{{ item.key }} {{ item.value }}"
+  loop: "{{ limits }}"
+
+- name: Set current limits
+  ansible.builtin.shell: ulimit -n {{ nofile }}
+  register: output
+  changed_when: output.rc != 0

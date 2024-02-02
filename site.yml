@@ -41,3 +41,10 @@
     - terraform_controller
   tags:
     - utils_server
+
+- name: SS Proxy Server
+  hosts: ss_proxy
+  roles:
+    - sslocal_proxy_server
+  tags:
+    - ss_proxy

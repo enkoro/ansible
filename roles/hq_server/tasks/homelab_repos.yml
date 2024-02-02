@@ -2,8 +2,10 @@
   ansible.builtin.git:
     repo: https://github.com/enkoro/terraform_proxmox
     dest: /root/homelab/terraform
+  ignore_errors: true
 
 - name: Clone homelab Ansible repo
   ansible.builtin.git:
     repo: https://github.com/enkoro/ansible
     dest: /root/homelab/ansible
+  ignore_errors: true

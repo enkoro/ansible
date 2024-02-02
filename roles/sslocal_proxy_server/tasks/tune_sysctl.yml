@@ -1,0 +1,12 @@
+- name: Tune /etc/sysctl.conf
+  ansible.builtin.lineinfile:
+    dest: /etc/sysctl.conf
+    state: present
+    regexp: "{{ item.key }}"
+    line: "{{ item.key }} = {{ item.value }}"
+  loop: "{{ sysctl_params }}"
+
+- name: Reload sysctl
+  ansible.builtin.shell: sysctl -p
+  register: output
+  changed_when: output.rc != 0

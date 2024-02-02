@@ -1,5 +1,6 @@
 - name: Stop ssproxy services
   ansible.builtin.import_tasks: ss_services_stop.yml
+  ignore_errors: true
 
 - name: Deploy ss-rust
   ansible.builtin.import_tasks: ss_deploy.yml
@@ -9,6 +10,12 @@
 
 - name: Create services
   ansible.builtin.import_tasks: ss_services_create.yml
+
+- name: Tune limits
+  ansible.builtin.import_tasks: tune_limits.yml
+
+- name: Tune sysctl
+  ansible.builtin.import_tasks: tune_sysctl.yml
 
 - name: Start ssproxy services
   ansible.builtin.import_tasks: ss_services_start.yml
