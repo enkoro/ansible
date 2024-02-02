@@ -1,16 +1,17 @@
-- name: CI VM
-  hosts: vm
+- name: Common Tasks
+  hosts: all
   roles:
-    - vm
-
-- name: Init Ubuntu
-  hosts: ubuntu
-  roles:
-    - ubuntu
     - role: ntp_client
       main_ntp_server: 192.168.1.1
       fallback_ntp_server: 192.168.1.2
       timezone: Europe/Moscow
+
+- name: CI VM
+  hosts: vm
+  roles:
+    - vm
+  tags:
+    - vm
 
 - name: Vault Server
   hosts: hc_vault
@@ -20,6 +21,8 @@
       set_apt_proxy: true
       http_proxy: 192.168.1.8:3128
     - hc_vault
+  tags:
+    - hc_vault
 
 - name: Portainer Server
   hosts: portainer_server
@@ -27,8 +30,14 @@
     - apt_upgrade
     - docker
     - portainer_server
+  tags:
+    - portainer_server
 
-- name: Utils Server
-  hosts: utils_server
+- name: HQ Server
+  hosts: hq_server
   roles:
+    - hq_server
+    - ansible_controller
+    - terraform_controller
+  tags:
     - utils_server

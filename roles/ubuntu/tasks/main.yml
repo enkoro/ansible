@@ -1,2 +1,2 @@
-- name: ZSH
-  ansible.builtin.import_tasks: zsh.yml
+# - name: ZSH
+#   ansible.builtin.import_tasks: zsh.yml

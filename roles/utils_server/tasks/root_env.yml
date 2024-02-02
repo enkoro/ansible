@@ -1,7 +1,0 @@
-- name: Сustomize /root/.profile
-  ansible.builtin.lineinfile:
-    dest: /root/.profile
-    state: present
-    regexp: "^{{ item.key }}="
-    line: "{{ item.key }}={{ item.value }}"
-  loop: "{{ root_environment }}"

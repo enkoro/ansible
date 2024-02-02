@@ -1,5 +1,0 @@
-- name: Set root env
-  ansible.builtin.import_tasks: root_env.yml
-
-- name: Set system wide env
-  ansible.builtin.import_tasks: system_wide_env.yml
