@@ -1,0 +1,11 @@
+os_environment:
+  - key: EDITOR
+    value: vi
+  - key: MY_ENV_VARIABLE
+    value: ansiblepilot
+
+root_environment:
+  - key: EDITOR
+    value: vi
+  - key: MY_ENV_VARIABLE
+    value: ansiblepilot

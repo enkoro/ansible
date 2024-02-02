@@ -1,0 +1,8 @@
+- name: Install Unzip
+  ansible.builtin.import_tasks: unzip.yml
+
+- name: Install GPG
+  ansible.builtin.import_tasks: gpg.yml
+
+- name: Install Tofu
+  ansible.builtin.import_tasks: tofu.yml

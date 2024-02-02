@@ -1,0 +1,16 @@
+- name: Download Tofu installation script
+  ansible.builtin.get_url:
+    url: https://get.opentofu.org/install-opentofu.sh
+    dest: /root/
+    mode: "0755"
+  register: tofu_install_script
+
+- name: Install Tofu
+  ansible.builtin.command: "{{ tofu_install_script.dest }} --install-method standalone"
+  register: output
+  changed_when: output.rc != 0
+
+- name: Cleanup
+  ansible.builtin.file:
+    path: "{{ tofu_install_script.dest }}"
+    state: absent

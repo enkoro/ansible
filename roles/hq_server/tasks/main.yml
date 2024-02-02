@@ -1,0 +1,14 @@
+- name: Set root env
+  ansible.builtin.import_tasks: root_env.yml
+
+- name: Set system wide env
+  ansible.builtin.import_tasks: system_wide_env.yml
+
+- name: Install Python
+  ansible.builtin.import_tasks: python.yml
+
+- name: Install Git
+  ansible.builtin.import_tasks: git.yml
+
+- name: Clone homelab repos
+  ansible.builtin.import_tasks: homelab_repos.yml

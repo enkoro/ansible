@@ -1,0 +1,5 @@
+- name: Install GPG
+  ansible.builtin.apt:
+    name: gpg
+    state: present
+    update_cache: true

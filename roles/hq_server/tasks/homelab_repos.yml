@@ -1,0 +1,9 @@
+- name: Clone homelab TF repo
+  ansible.builtin.git:
+    repo: https://github.com/enkoro/terraform_proxmox
+    dest: /root/homelab/terraform
+
+- name: Clone homelab Ansible repo
+  ansible.builtin.git:
+    repo: https://github.com/enkoro/ansible
+    dest: /root/homelab/ansible
