@@ -37,6 +37,7 @@
   hosts: hq_server
   roles:
     - hq_server
+    - proxy_client
     - ansible_controller
     - terraform_controller
   tags:
